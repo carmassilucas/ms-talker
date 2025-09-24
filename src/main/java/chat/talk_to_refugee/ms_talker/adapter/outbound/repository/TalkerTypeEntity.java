@@ -1,6 +1,10 @@
-package chat.talk_to_refugee.ms_talker.repository;
+package chat.talk_to_refugee.ms_talker.adapter.outbound.repository;
 
-import jakarta.persistence.*;
+import chat.talk_to_refugee.ms_talker.core.domain.TalkerType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -19,4 +23,7 @@ public class TalkerTypeEntity {
     @Column(name = "description", unique = true, nullable = false, updatable = false)
     private String description;
 
+    public TalkerType toDomain() {
+        return new TalkerType(id, description);
+    }
 }

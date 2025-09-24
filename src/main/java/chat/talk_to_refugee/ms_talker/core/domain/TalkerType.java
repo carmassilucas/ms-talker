@@ -1,4 +1,4 @@
-package chat.talk_to_refugee.ms_talker.domain;
+package chat.talk_to_refugee.ms_talker.core.domain;
 
 public class TalkerType {
 

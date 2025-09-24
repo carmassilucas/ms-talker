@@ -1,4 +1,4 @@
-package chat.talk_to_refugee.ms_talker.repository;
+package chat.talk_to_refugee.ms_talker.adapter.outbound.repository;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -2,6 +2,7 @@ package chat.talk_to_refugee.ms_talker.infra.config;
 
 import chat.talk_to_refugee.ms_talker.core.port.inbound.CreateTalkerTypeUseCasePort;
 import chat.talk_to_refugee.ms_talker.core.port.inbound.CreateTalkerUseCasePort;
+import chat.talk_to_refugee.ms_talker.core.port.outbound.PasswordEncoderAdapterPort;
 import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerRepositoryAdapterPort;
 import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerTypeRepositoryAdapterPort;
 import chat.talk_to_refugee.ms_talker.core.usecase.CreateTalkerTypeUseCase;
@@ -18,7 +19,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public CreateTalkerUseCasePort createTalkerUseCase(TalkerRepositoryAdapterPort repository) {
-        return new CreateTalkerUseCase(repository);
+    public CreateTalkerUseCasePort createTalkerUseCase(TalkerRepositoryAdapterPort repository,
+                                                       PasswordEncoderAdapterPort encoder) {
+        return new CreateTalkerUseCase(repository, encoder);
     }
 }

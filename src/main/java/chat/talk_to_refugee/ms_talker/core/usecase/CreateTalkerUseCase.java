@@ -4,6 +4,7 @@ import chat.talk_to_refugee.ms_talker.core.domain.Talker;
 import chat.talk_to_refugee.ms_talker.core.exception.TalkerAlreadyExistsException;
 import chat.talk_to_refugee.ms_talker.core.exception.UnderageNotAllowedException;
 import chat.talk_to_refugee.ms_talker.core.port.inbound.CreateTalkerUseCasePort;
+import chat.talk_to_refugee.ms_talker.core.port.outbound.PasswordEncoderAdapterPort;
 import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerRepositoryAdapterPort;
 
 import java.time.LocalDate;
@@ -11,9 +12,11 @@ import java.time.LocalDate;
 public class CreateTalkerUseCase implements CreateTalkerUseCasePort {
 
     private final TalkerRepositoryAdapterPort repository;
+    private final PasswordEncoderAdapterPort encoder;
 
-    public CreateTalkerUseCase(TalkerRepositoryAdapterPort repository) {
+    public CreateTalkerUseCase(TalkerRepositoryAdapterPort repository, PasswordEncoderAdapterPort encoder) {
         this.repository = repository;
+        this.encoder = encoder;
     }
 
     @Override
@@ -26,6 +29,7 @@ public class CreateTalkerUseCase implements CreateTalkerUseCasePort {
             throw new TalkerAlreadyExistsException();
         }
 
+        talker.setPassword(this.encoder.encode(talker.getPassword()));
         this.repository.save(talker);
     }
 }

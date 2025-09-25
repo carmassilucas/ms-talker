@@ -17,4 +17,9 @@ public class PasswordEncoderAdapter implements PasswordEncoderAdapterPort {
     public String encode(CharSequence rawPassword) {
         return this.encoder.encode(rawPassword);
     }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return this.encoder.matches(rawPassword, encodedPassword);
+    }
 }

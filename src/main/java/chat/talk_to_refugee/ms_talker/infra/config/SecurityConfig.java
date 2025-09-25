@@ -41,6 +41,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorization ->
                         authorization.requestMatchers(HttpMethod.POST, "/talkers").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/talkers/auth").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)

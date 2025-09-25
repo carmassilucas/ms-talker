@@ -6,6 +6,7 @@ import chat.talk_to_refugee.ms_talker.core.exception.UnderageNotAllowedException
 import chat.talk_to_refugee.ms_talker.core.port.inbound.CreateTalkerUseCasePort;
 import chat.talk_to_refugee.ms_talker.core.port.outbound.PasswordEncoderAdapterPort;
 import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerRepositoryAdapterPort;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDate;
 
@@ -22,11 +23,11 @@ public class CreateTalkerUseCase implements CreateTalkerUseCasePort {
     @Override
     public void execute(Talker talker) {
         if (talker.getBirthDate().isAfter(LocalDate.now().minusYears(18))) {
-            throw new UnderageNotAllowedException();
+            throw new UnderageNotAllowedException(HttpStatus.UNPROCESSABLE_ENTITY.value());
         }
 
         if (this.repository.findByEmail(talker.getEmail()).isPresent()) {
-            throw new TalkerAlreadyExistsException();
+            throw new TalkerAlreadyExistsException(HttpStatus.UNPROCESSABLE_ENTITY.value());
         }
 
         talker.setPassword(this.encoder.encode(talker.getPassword()));

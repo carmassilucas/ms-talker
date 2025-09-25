@@ -2,6 +2,7 @@ package chat.talk_to_refugee.ms_talker.adapter.inbound.resource;
 
 import chat.talk_to_refugee.ms_talker.adapter.inbound.resource.request.CreateTalker;
 import chat.talk_to_refugee.ms_talker.core.port.inbound.CreateTalkerUseCasePort;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public class TalkerResource {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody CreateTalker requestBody) {
+    public ResponseEntity<?> create(@RequestBody @Valid CreateTalker requestBody) {
         this.create.execute(requestBody.toDomain());
         return ResponseEntity.noContent().build();
     }

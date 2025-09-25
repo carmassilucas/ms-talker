@@ -7,11 +7,11 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public record CreateTalker(@NotBlank String fullName,
-                           @NotNull LocalDate birthDate,
-                           @NotNull TalkerType.Value type,
-                           @NotBlank String email,
-                           @NotBlank String password) {
+public record CreateTalkerRequest(@NotBlank String fullName,
+                                  @NotNull LocalDate birthDate,
+                                  @NotNull TalkerType.Value type,
+                                  @NotBlank String email,
+                                  @NotBlank String password) {
 
     public Talker toDomain() {
         return new Talker(fullName, birthDate, type, email, password);

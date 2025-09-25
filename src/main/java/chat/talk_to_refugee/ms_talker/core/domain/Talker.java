@@ -36,6 +36,14 @@ public class Talker {
         this.updatedAt = updatedAt;
     }
 
+    public Talker(String fullName, LocalDate birthDate, TalkerType.Value type, String email, String password) {
+        this.fullName = fullName;
+        this.birthDate = birthDate;
+        this.type = type.get();
+        this.email = email;
+        this.password = password;
+    }
+
     public UUID getId() {
         return id;
     }

@@ -2,25 +2,15 @@ package chat.talk_to_refugee.ms_talker.core.domain;
 
 public class TalkerLocation {
 
-    private Long id;
     private String state;
     private String city;
 
     public TalkerLocation() {
     }
 
-    public TalkerLocation(Long id, String state, String city) {
-        this.id = id;
+    public TalkerLocation(String state, String city) {
         this.state = state;
         this.city = city;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getState() {

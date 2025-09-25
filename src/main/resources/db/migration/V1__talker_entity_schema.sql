@@ -17,7 +17,7 @@ create table tb_talker (
     about_me text,
     currently_state character varying,
     currently_city character varying,
-    talker_type_id  bigint,
+    talker_type_id bigint not null,
     email character varying not null,
     password character varying not null,
     created_at timestamp without time zone not null,

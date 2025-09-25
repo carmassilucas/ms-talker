@@ -41,7 +41,7 @@ public @Data class TalkerEntity {
     private String currentlyCity;
 
     @ManyToOne
-    @JoinColumn(name = "talker_type_id")
+    @JoinColumn(name = "talker_type_id", nullable = false)
     private TalkerTypeEntity type;
 
     @Column(name = "email", unique = true, nullable = false, updatable = false)

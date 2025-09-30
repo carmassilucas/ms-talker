@@ -1,7 +1,6 @@
 package chat.talk_to_refugee.ms_talker.adapter.outbound.repository;
 
 import chat.talk_to_refugee.ms_talker.core.domain.Talker;
-import chat.talk_to_refugee.ms_talker.core.domain.TalkerLocation;
 import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerRepositoryAdapterPort;
 import org.springframework.stereotype.Component;
 
@@ -18,26 +17,7 @@ public class TalkerRepositoryAdapter implements TalkerRepositoryAdapterPort {
 
     @Override
     public Optional<Talker> findByEmail(String email) {
-        return this.repository.findByEmail(email).map(entity -> {
-            var location = new TalkerLocation(
-                    entity.getCurrentlyState(), entity.getCurrentlyCity()
-            );
-
-            var type = entity.getType().toDomain();
-
-            return new Talker(
-                    entity.getId(),
-                    entity.getFullName(),
-                    entity.getBirthDate(),
-                    entity.getProfilePhoto(),
-                    entity.getAboutMe(),
-                    location,
-                    type,
-                    entity.getEmail(),
-                    entity.getPassword(),
-                    entity.getCreatedAt(),
-                    entity.getUpdatedAt());
-        });
+        return this.repository.findByEmail(email).map(TalkerEntity::toDomain);
     }
 
     @Override

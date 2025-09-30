@@ -1,5 +1,7 @@
 package chat.talk_to_refugee.ms_talker.adapter.outbound.repository;
 
+import chat.talk_to_refugee.ms_talker.core.domain.Talker;
+import chat.talk_to_refugee.ms_talker.core.domain.TalkerLocation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,4 +61,20 @@ public @Data class TalkerEntity {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    public Talker toDomain() {
+        return new Talker(
+                this.id,
+                this.fullName,
+                this.birthDate,
+                this.profilePhoto,
+                this.aboutMe,
+                new TalkerLocation(this.currentlyState, this.currentlyCity),
+                this.type.toDomain(),
+                this.email,
+                this.password,
+                this.createdAt,
+                this.updatedAt
+        );
+    }
 }

@@ -5,6 +5,7 @@ import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerRepositoryAdapter
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class TalkerRepositoryAdapter implements TalkerRepositoryAdapterPort {
@@ -35,5 +36,10 @@ public class TalkerRepositoryAdapter implements TalkerRepositoryAdapterPort {
                 .build();
 
         this.repository.save(entity);
+    }
+
+    @Override
+    public Optional<Talker> findById(UUID id) {
+        return this.repository.findById(id).map(TalkerEntity::toDomain);
     }
 }

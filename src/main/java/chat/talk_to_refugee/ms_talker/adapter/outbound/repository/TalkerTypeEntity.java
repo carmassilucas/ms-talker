@@ -25,6 +25,11 @@ public class TalkerTypeEntity {
         this.description = description;
     }
 
+    public TalkerTypeEntity(TalkerType type) {
+        this.id = type.getId();
+        this.description = type.getDescription();
+    }
+
     public TalkerType toDomain() {
         return new TalkerType(id, description);
     }

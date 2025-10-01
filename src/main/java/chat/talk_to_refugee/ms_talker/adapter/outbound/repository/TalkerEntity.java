@@ -59,6 +59,14 @@ public class TalkerEntity {
     public TalkerEntity() {
     }
 
+    public TalkerEntity(Talker talker) {
+        this.fullName = talker.getFullName();
+        this.birthDate = talker.getBirthDate();
+        this.type = new TalkerTypeEntity(talker.getType());
+        this.email = talker.getEmail();
+        this.password = talker.getPassword();
+    }
+
     public UUID getId() {
         return id;
     }

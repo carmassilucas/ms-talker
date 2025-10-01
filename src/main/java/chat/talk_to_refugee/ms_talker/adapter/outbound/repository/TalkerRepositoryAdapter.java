@@ -1,8 +1,10 @@
 package chat.talk_to_refugee.ms_talker.adapter.outbound.repository;
 
+import chat.talk_to_refugee.ms_talker.adapter.outbound.mapper.CreateTalkerMapper;
 import chat.talk_to_refugee.ms_talker.core.domain.Talker;
 import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerRepositoryAdapterPort;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -11,9 +13,11 @@ import java.util.UUID;
 public class TalkerRepositoryAdapter implements TalkerRepositoryAdapterPort {
 
     private final TalkerRepository repository;
+    private final CreateTalkerMapper createMapper;
 
-    public TalkerRepositoryAdapter(TalkerRepository repository) {
+    public TalkerRepositoryAdapter(TalkerRepository repository, CreateTalkerMapper createMapper) {
         this.repository = repository;
+        this.createMapper = createMapper;
     }
 
     @Override
@@ -22,20 +26,9 @@ public class TalkerRepositoryAdapter implements TalkerRepositoryAdapterPort {
     }
 
     @Override
+    @Transactional
     public void save(Talker talker) {
-        var type = new TalkerTypeEntity(
-                talker.getType().getId(), talker.getType().getDescription()
-        );
-
-        var entity = TalkerEntity.builder()
-                .fullName(talker.getFullName())
-                .birthDate(talker.getBirthDate())
-                .type(type)
-                .email(talker.getEmail())
-                .password(talker.getPassword())
-                .build();
-
-        this.repository.save(entity);
+        this.repository.save(this.createMapper.map(talker));
     }
 
     @Override

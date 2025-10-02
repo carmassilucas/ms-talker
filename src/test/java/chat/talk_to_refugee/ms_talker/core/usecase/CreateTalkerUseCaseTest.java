@@ -33,7 +33,7 @@ class CreateTalkerUseCaseTest {
 
     @Test
     @DisplayName("Deve cadastrar talker")
-    void must_register_talker() {
+    void should_register_talker() {
         var requestBody = new CreateTalkerRequest(
                 "John Doe",
                 LocalDate.parse("2000-01-01"),

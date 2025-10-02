@@ -38,7 +38,7 @@ class AuthTalkerUseCaseTest {
 
     @Test
     @DisplayName("Deve autenticar talker")
-    void must_authenticate_talker() {
+    void should_authenticate_talker() {
         var requestBody = new AuthTalkerRequest("john.doe@t2r.com", "john.doe");
 
         var id = UUID.randomUUID();

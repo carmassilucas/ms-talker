@@ -22,7 +22,7 @@ class CreateTalkerTypeUseCaseTest {
 
     @Test
     @DisplayName("Deve cadastrar tipo")
-    void must_register_type() {
+    void should_register_type() {
         var type = new TalkerType(1L, "administrator");
 
         this.create.execute(type);

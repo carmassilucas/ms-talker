@@ -22,8 +22,17 @@ public class Talker {
     public Talker() {
     }
 
-    public Talker(UUID id, String fullName, LocalDate birthDate, String profilePhoto, String aboutMe, TalkerLocation location,
-                  TalkerType type, String email, String password, Instant createdAt, Instant updatedAt) {
+    public Talker(UUID id,
+                  String fullName,
+                  LocalDate birthDate,
+                  String profilePhoto,
+                  String aboutMe,
+                  TalkerLocation location,
+                  TalkerType type,
+                  String email,
+                  String password,
+                  Instant createdAt,
+                  Instant updatedAt) {
         this.id = id;
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -49,6 +58,18 @@ public class Talker {
         this.type = type.get();
         this.email = email;
         this.password = password;
+    }
+
+    public Talker(String fullName,
+                  LocalDate birthDate,
+                  String aboutMe,
+                  TalkerLocation location,
+                  TalkerType type) {
+        this.fullName = fullName;
+        this.birthDate = birthDate;
+        this.aboutMe = aboutMe;
+        this.location = location;
+        this.type = type;
     }
 
     public UUID getId() {

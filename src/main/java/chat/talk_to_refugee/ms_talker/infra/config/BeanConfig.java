@@ -1,10 +1,7 @@
 package chat.talk_to_refugee.ms_talker.infra.config;
 
 import chat.talk_to_refugee.ms_talker.core.port.inbound.*;
-import chat.talk_to_refugee.ms_talker.core.port.outbound.AuthenticatorAdapterPort;
-import chat.talk_to_refugee.ms_talker.core.port.outbound.PasswordEncoderAdapterPort;
-import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerRepositoryAdapterPort;
-import chat.talk_to_refugee.ms_talker.core.port.outbound.TalkerTypeRepositoryAdapterPort;
+import chat.talk_to_refugee.ms_talker.core.port.outbound.*;
 import chat.talk_to_refugee.ms_talker.core.usecase.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,5 +36,11 @@ public class BeanConfig {
     public UpdateTalkerPasswordUseCasePort updateTalkerPasswordUseCase(TalkerRepositoryAdapterPort repository,
                                                                        PasswordEncoderAdapterPort passwordEncoder) {
         return new UpdateTalkerPasswordUseCase(repository, passwordEncoder);
+    }
+
+    @Bean
+    public UpdateTalkerUseCasePort updateTalkerUseCase(TalkerRepositoryAdapterPort repository,
+                                                       TalkerMapperAdapterPort mapper) {
+        return new UpdateTalkerUseCase(repository, mapper);
     }
 }

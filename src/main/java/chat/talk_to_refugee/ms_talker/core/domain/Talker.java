@@ -2,6 +2,7 @@ package chat.talk_to_refugee.ms_talker.core.domain;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @SuppressWarnings("unused")
@@ -158,5 +159,51 @@ public class Talker {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Talker{" +
+                "id=" + id +
+                ", fullName='" + fullName +
+                ", birthDate=" + birthDate +
+                ", profilePhoto='" + profilePhoto +
+                ", aboutMe='" + aboutMe +
+                ", location=" + location +
+                ", type=" + type +
+                ", email='" + email +
+                ", password='" + password +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Talker talker = (Talker) o;
+        return Objects.equals(id, talker.id) && Objects.equals(fullName, talker.fullName) &&
+                Objects.equals(birthDate, talker.birthDate) && Objects.equals(profilePhoto, talker.profilePhoto) &&
+                Objects.equals(aboutMe, talker.aboutMe) && Objects.equals(location, talker.location) &&
+                Objects.equals(type, talker.type) && Objects.equals(email, talker.email) &&
+                Objects.equals(password, talker.password) && Objects.equals(createdAt, talker.createdAt)
+                && Objects.equals(updatedAt, talker.updatedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                id,
+                fullName,
+                birthDate,
+                profilePhoto,
+                aboutMe,
+                location,
+                type,
+                email,
+                password,
+                createdAt,
+                updatedAt
+        );
     }
 }

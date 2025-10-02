@@ -60,11 +60,18 @@ public class TalkerEntity {
     }
 
     public TalkerEntity(Talker talker) {
+        this.id = talker.getId();
         this.fullName = talker.getFullName();
         this.birthDate = talker.getBirthDate();
+        this.profilePhoto = talker.getProfilePhoto();
+        this.aboutMe = talker.getAboutMe();
+        this.currentlyState = talker.getLocation().getState();
+        this.currentlyCity = talker.getLocation().getCity();
         this.type = new TalkerTypeEntity(talker.getType());
         this.email = talker.getEmail();
         this.password = talker.getPassword();
+        this.createdAt = talker.getCreatedAt();
+        this.updatedAt = talker.getUpdatedAt();
     }
 
     public UUID getId() {
@@ -170,7 +177,10 @@ public class TalkerEntity {
                 this.birthDate,
                 this.profilePhoto,
                 this.aboutMe,
-                new TalkerLocation(this.currentlyState, this.currentlyCity),
+                new TalkerLocation(
+                        this.currentlyState,
+                        this.currentlyCity
+                ),
                 this.type.toDomain(),
                 this.email,
                 this.password,

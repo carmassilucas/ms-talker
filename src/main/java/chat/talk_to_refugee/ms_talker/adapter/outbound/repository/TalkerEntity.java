@@ -48,6 +48,9 @@ public class TalkerEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "active", nullable = false)
+    private Boolean active;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
@@ -70,6 +73,7 @@ public class TalkerEntity {
         this.type = new TalkerTypeEntity(talker.getType());
         this.email = talker.getEmail();
         this.password = talker.getPassword();
+        this.active = talker.getActive();
         this.createdAt = talker.getCreatedAt();
         this.updatedAt = talker.getUpdatedAt();
     }
@@ -154,6 +158,14 @@ public class TalkerEntity {
         this.password = password;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Instant getCreatedAt() {
         return createdAt;
     }
@@ -184,6 +196,7 @@ public class TalkerEntity {
                 this.type.toDomain(),
                 this.email,
                 this.password,
+                this.active,
                 this.createdAt,
                 this.updatedAt
         );

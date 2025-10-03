@@ -21,22 +21,26 @@ public class TalkerResource {
     private final CreateTalkerUseCasePort create;
     private final AuthTalkerUseCasePort auth;
     private final TalkerProfileUseCasePort profile;
+    private final ToggleActiveProfileUseCasePort toggle;
     private final UpdateTalkerPasswordUseCasePort password;
     private final UpdateTalkerUseCasePort update;
 
     public TalkerResource(CreateTalkerUseCasePort create,
                           AuthTalkerUseCasePort auth,
                           TalkerProfileUseCasePort profile,
-                          UpdateTalkerPasswordUseCasePort password, UpdateTalkerUseCasePort update) {
+                          ToggleActiveProfileUseCasePort toggle,
+                          UpdateTalkerPasswordUseCasePort password,
+                          UpdateTalkerUseCasePort update) {
         this.create = create;
         this.auth = auth;
         this.profile = profile;
+        this.toggle = toggle;
         this.password = password;
         this.update = update;
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody @Valid CreateTalkerRequest requestBody) {
+    public ResponseEntity<Void> create(@RequestBody @Valid CreateTalkerRequest requestBody) {
         this.create.execute(requestBody.toDomain());
         return ResponseEntity.noContent().build();
     }
@@ -50,6 +54,20 @@ public class TalkerResource {
     public ResponseEntity<TalkerProfileResponse> profile(JwtAuthenticationToken token) {
         var id = UUID.fromString(token.getName());
         return ResponseEntity.ok(this.profile.execute(id));
+    }
+
+    @PatchMapping(value = "/activate")
+    public ResponseEntity<Void> activate(JwtAuthenticationToken token) {
+        var id = UUID.fromString(token.getName());
+        this.toggle.execute(id, true);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping(value = "/disable")
+    public ResponseEntity<Void> disable(JwtAuthenticationToken token) {
+        var id = UUID.fromString(token.getName());
+        this.toggle.execute(id, false);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping

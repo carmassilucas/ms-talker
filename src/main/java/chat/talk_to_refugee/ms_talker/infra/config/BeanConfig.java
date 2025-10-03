@@ -43,4 +43,9 @@ public class BeanConfig {
                                                        TalkerMapperAdapterPort mapper) {
         return new UpdateTalkerUseCase(repository, mapper);
     }
+
+    @Bean
+    public ToggleActiveProfileUseCasePort toggleActiveProfileUseCase(TalkerRepositoryAdapterPort repository) {
+        return new ToggleActiveProfileUseCase(repository);
+    }
 }

@@ -12,5 +12,6 @@ public record TalkerProfileResponse(UUID id,
                                     String profilePhoto,
                                     String aboutMe,
                                     TalkerLocation location,
-                                    TalkerType type) {
+                                    TalkerType type,
+                                    Boolean active) {
 }

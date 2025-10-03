@@ -17,6 +17,7 @@ public class Talker {
     private TalkerType type;
     private String email;
     private String password;
+    private Boolean active;
     private Instant createdAt;
     private Instant updatedAt;
 
@@ -32,6 +33,7 @@ public class Talker {
                   TalkerType type,
                   String email,
                   String password,
+                  Boolean active,
                   Instant createdAt,
                   Instant updatedAt) {
         this.id = id;
@@ -43,6 +45,7 @@ public class Talker {
         this.type = type;
         this.email = email;
         this.password = password;
+        this.active = active;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -59,6 +62,7 @@ public class Talker {
         this.type = type.get();
         this.email = email;
         this.password = password;
+        this.active = true;
     }
 
     public Talker(String fullName,
@@ -145,6 +149,14 @@ public class Talker {
         this.password = password;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Instant getCreatedAt() {
         return createdAt;
     }
@@ -173,6 +185,7 @@ public class Talker {
                 ", type=" + type +
                 ", email='" + email +
                 ", password='" + password +
+                ", active=" + active +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
@@ -186,8 +199,8 @@ public class Talker {
                 Objects.equals(birthDate, talker.birthDate) && Objects.equals(profilePhoto, talker.profilePhoto) &&
                 Objects.equals(aboutMe, talker.aboutMe) && Objects.equals(location, talker.location) &&
                 Objects.equals(type, talker.type) && Objects.equals(email, talker.email) &&
-                Objects.equals(password, talker.password) && Objects.equals(createdAt, talker.createdAt)
-                && Objects.equals(updatedAt, talker.updatedAt);
+                Objects.equals(password, talker.password) && Objects.equals(active, talker.active) &&
+                Objects.equals(createdAt, talker.createdAt) && Objects.equals(updatedAt, talker.updatedAt);
     }
 
     @Override
@@ -202,6 +215,7 @@ public class Talker {
                 type,
                 email,
                 password,
+                active,
                 createdAt,
                 updatedAt
         );

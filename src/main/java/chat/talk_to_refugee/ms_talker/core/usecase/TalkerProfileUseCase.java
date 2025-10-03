@@ -26,7 +26,8 @@ public class TalkerProfileUseCase implements TalkerProfileUseCasePort {
                 talker.getProfilePhoto(),
                 talker.getAboutMe(),
                 talker.getLocation(),
-                talker.getType()
+                talker.getType(),
+                talker.getActive()
         );
     }
 }

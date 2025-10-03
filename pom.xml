@@ -103,6 +103,13 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<configuration>
+							<excludes>
+								<exclude>**/core/domain/**</exclude>
+								<exclude>**/core/exception/**</exclude>
+								<exclude>**/adapter/outbound/repository/*Entity.class</exclude>
+							</excludes>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

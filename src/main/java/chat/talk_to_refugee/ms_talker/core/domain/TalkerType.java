@@ -1,5 +1,8 @@
 package chat.talk_to_refugee.ms_talker.core.domain;
 
+import java.util.Objects;
+
+@SuppressWarnings("unused")
 public class TalkerType {
 
     private Long id;
@@ -27,6 +30,26 @@ public class TalkerType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "TalkerType{" +
+                "id=" + id +
+                ", description='" + description +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TalkerType that = (TalkerType) o;
+        return Objects.equals(id, that.id) && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description);
     }
 
     public enum Value {

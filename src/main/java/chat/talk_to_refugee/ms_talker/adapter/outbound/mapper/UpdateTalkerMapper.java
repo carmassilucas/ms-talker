@@ -17,8 +17,8 @@ public interface UpdateTalkerMapper {
 
     @Condition
     default boolean isNotBlank(Object value) {
-        if (value == null) return false;
-        if (value.getClass().equals(String.class)) return StringUtils.hasText((String) value);
-        return true;
+        if (value instanceof String str)
+            return StringUtils.hasText(str);
+        return value != null;
     }
 }

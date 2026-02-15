@@ -1,0 +1,15 @@
+services:
+  talker-db:
+    container_name: talker-db
+    image: postgres:18.1-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - "pg_data:/var/lib/postgresql"
+    environment:
+      POSTGRES_DB: talker-db
+      POSTGRES_USER: talker-user
+      POSTGRES_PASSWORD: talker-pass
+
+volumes:
+  pg_data:

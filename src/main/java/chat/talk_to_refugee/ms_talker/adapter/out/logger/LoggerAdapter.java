@@ -11,4 +11,9 @@ public class LoggerAdapter implements LoggerPort {
     public void info(Class<?> clazz, String message) {
         LoggerFactory.getLogger(clazz).info(message);
     }
+
+    @Override
+    public void warn(Class<?> clazz, String message) {
+        LoggerFactory.getLogger(clazz).warn(message);
+    }
 }

@@ -1,5 +1,7 @@
 package chat.talk_to_refugee.ms_talker.core.domain;
 
+import java.util.Objects;
+
 public class Profile {
 
     private final Long id;
@@ -16,6 +18,17 @@ public class Profile {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Profile profile)) return false;
+        return Objects.equals(getId(), profile.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
     }
 
     public enum Name {

@@ -1,4 +1,4 @@
-package chat.talk_to_refugee.ms_talker.adapter.out.persistence;
+package chat.talk_to_refugee.ms_talker.adapter.out.persistence.profile;
 
 import chat.talk_to_refugee.ms_talker.core.domain.Profile;
 import jakarta.persistence.*;
